@@ -133,17 +133,32 @@
             </section>
             <section class="section-mint" id="section-mint">
                 <div class="form__container">
+                    <div class="mint-note">
+                        <p>Note⛔: Max mint per wallet is 20</p>
+                    </div>
                     <form action="#" class="mint-form">
                         <input
                             type="text"
                             placeholder="Enter The baseURI for your NFT"
-                            class="form-input"
+                            class="form-input baseURI-input"
                         />
-                        <input
-                            type="text"
-                            placeholder="0.01 ETHERS"
-                            class="form-input"
-                        />
+                        <div class="price__container">
+                            <div class="qty-btn" id="sub-btn">
+                                <span>-</span>
+                            </div>
+                            <p>
+                                Mint
+                                <input
+                                    class="nft-qty"
+                                    type="number"
+                                    placeholder="0"
+                                />
+                                B3NFT @ <span class="price">0.01</span>ETH
+                            </p>
+                            <div class="qty-btn" id="add-btn">
+                                <span>+</span>
+                            </div>
+                        </div>
                         <input type="button" value="MINT" class="form__btn" />
                     </form>
                 </div>

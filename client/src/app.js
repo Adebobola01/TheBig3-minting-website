@@ -9,9 +9,14 @@ const MMwallet = document.querySelector(".metamask__btn");
 const WCwallet = document.querySelector(".walletConnect__btn");
 const connectBtnContainer = document.querySelector(".connect__btn--container");
 const mainBody = document.querySelector(".main");
+const mintForm = document.querySelector(".mint-form");
+const baseURI = document.querySelector(".baseURI-input");
+const addBtn = document.querySelector("#add-btn");
+const subBtn = document.querySelector("#sub-btn");
+const nftQty = document.querySelector(".nft-qty");
 
 const state = {};
-let web3 = new Web3(Web3.givenProvider);
+
 const message = "You are about to sign into the big3Minting website";
 
 ///////////////////////////////
@@ -46,6 +51,7 @@ const confirmSignature = async () => {
 
 const getContract = async () => {
     try {
+        let web3 = new Web3(Web3.givenProvider);
         state.networkId = await web3.eth.net.getId();
         state.contractAddress = Big3NFT.networks[state.networkId].address;
         state.big3NFTInstance = await new web3.eth.Contract(
@@ -59,6 +65,18 @@ const getContract = async () => {
     }
 };
 
+const mintHandler = async () => {
+    try {
+        await state.big3NFTInstance.methods.mint(state.baseURI).send({
+            from: state.userAccount,
+            to: state.contractAddress,
+            value: "0.01 ether",
+        });
+    } catch (error) {
+        console.error(error);
+    }
+};
+
 const connectHandler = async () => {
     await signMessage();
     removeWalletContainer();
@@ -67,8 +85,15 @@ const connectHandler = async () => {
 };
 const init = () => {
     getContract();
+    nftQty.value = 0;
 };
 init();
+
+mintForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    state.baseURI = baseURI.value;
+    mintHandler();
+});
 connectBtn.addEventListener("click", connectWallet);
 MMwallet.addEventListener("click", async () => {
     await getMMAccounts();
@@ -77,4 +102,13 @@ MMwallet.addEventListener("click", async () => {
 WCwallet.addEventListener("click", async () => {
     await connectWC();
     connectHandler();
+});
+
+addBtn.addEventListener("click", () => {
+    nftQty.value = parseInt(nftQty.value) + 1;
+});
+
+subBtn.addEventListener("click", () => {
+    if (parseInt(nftQty.value) === 0) return;
+    nftQty.value = parseInt(nftQty.value) - 1;
 });

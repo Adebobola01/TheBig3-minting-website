@@ -15,6 +15,7 @@ contract Big3NFT is ERC721URIStorage, Ownable, ReentrancyGuard {
   uint256 public _price;
   uint256 public maxPerWallet;
   mapping(address => uint256) public walletMints;
+  string private _baseTokenURI;
 
 
   constructor() ERC721("Big3NFT", "B3N"){
@@ -23,12 +24,24 @@ contract Big3NFT is ERC721URIStorage, Ownable, ReentrancyGuard {
     paused = true;
     maxPerWallet = 20;
   }
+
+  function _baseURI() internal view virtual override returns (string memory) {
+        return _baseTokenURI;
+    }
+
+    function setBaseURI(string calldata baseURI) public{
+      _baseTokenURI = baseURI;
+    }
   
   // Mint for dev
-  function devMint(address _to) external onlyOwner{
+  function devMint(address _to, string calldata _tokensBaseURI, uint256 _qty) external onlyOwner{
     require(paused = true, "Minting must be paused");
-    _tokenIdCounter.increment();
-    _safeMint(_to, _tokenIdCounter.current());
+
+    setBaseURI(_tokensBaseURI);
+    for(uint256 i = 0; i < _qty; i++){
+      _tokenIdCounter.increment();
+      _safeMint(_to, _tokenIdCounter.current());
+    }
   }
 
   // Set Mint Price
@@ -42,14 +55,26 @@ contract Big3NFT is ERC721URIStorage, Ownable, ReentrancyGuard {
   }
 
   //Mint multiple
-  function mint(string memory _tokensBaseURI) public payable {
+  function mint(string memory _tokenURI) public payable {
     require(paused = false, "Minting is currently paused");
     require(walletMints[msg.sender] + 1 <= maxPerWallet, "You have exceeded the max mints per wallet");
     require(msg.value >= _price, "Not enough ethers sent");
 
      _tokenIdCounter.increment();
     _safeMint(msg.sender, _tokenIdCounter.current());
-    _setTokenURI(_tokenIdCounter.current(), _tokensBaseURI);
+    _setTokenURI(_tokenIdCounter.current(), _tokenURI);
+  }
+
+  function mintMultiple(string calldata _tokensBaseURI, uint256 _qty) public payable {
+    require(paused = false, "Minting is currently paused");
+    require(walletMints[msg.sender] + _qty <= maxPerWallet, "You have exceeded the max mints per wallet");
+    require(msg.value >= _qty * _price);
+
+    setBaseURI(_tokensBaseURI);
+    for(uint256 i = 0; i < _qty; i++){
+      _tokenIdCounter.increment();
+      _safeMint(msg.sender, _tokenIdCounter.current());
+    }
   }
 
   function withdraw(address payable _to) public onlyOwner{
