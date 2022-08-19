@@ -1,3 +1,7 @@
+"use strict";
+
+import Big3NFT from "./contracts/Big3NFT.json" assert { type: "json" };
+
 const backdrop = document.querySelector(".backdrop");
 const connectBtn = document.querySelector(".connect--button");
 const walletsContainer = document.querySelector(".wallet__container");
@@ -17,17 +21,12 @@ const message = "You are about to sign into the big3Minting website";
 // connectBtn.addEventListener("click");
 
 const connectWallet = () => {
-    backdrop.classList.remove("hidden");
-    walletsContainer.classList.remove("hidden");
+    backdrop.classList.toggle("hidden");
+    walletsContainer.classList.toggle("hidden");
 };
 const removeWalletContainer = () => {
     backdrop.classList.add("hidden");
     walletsContainer.classList.add("hidden");
-};
-
-const getMMAccounts = async () => {
-    state.accounts = await ethereum.request({ method: "eth_requestAccounts" });
-    state.userAccount = state.accounts[0];
 };
 
 const displayAddr = () => {
@@ -35,11 +34,6 @@ const displayAddr = () => {
         -4
     )}`;
     connectBtnContainer.innerHTML = addr;
-};
-
-const signMessage = async () => {
-    state.signature = await web3.eth.personal.sign(message, state.userAccount);
-    console.log(state.signature);
 };
 
 const confirmSignature = async () => {
@@ -50,41 +44,31 @@ const confirmSignature = async () => {
     mainBody.innerHTML = `<h1>You address: ${recoveredAddr}, has been verified</h1>`;
 };
 
+const getContract = async () => {
+    try {
+        state.networkId = await web3.eth.net.getId();
+        state.contractAddress = Big3NFT.networks[state.networkId].address;
+        state.big3NFTInstance = await new web3.eth.Contract(
+            Big3NFT.abi,
+            Big3NFT.networks[state.networkId] &&
+                Big3NFT.networks[state.networkId].address
+        );
+        console.log(state.networkId);
+    } catch (error) {
+        console.error(error);
+    }
+};
+
 const connectHandler = async () => {
     await signMessage();
     removeWalletContainer();
     displayAddr();
     confirmSignature();
 };
-
-///////////////////////////////
-//////////////////////
-//WalletConnect
-
-const provider = new WalletConnectProvider.default({
-    rpc: {
-        1: "https://cloudflare-eth.com/",
-        // 3: "https://ropsten.mycustomnode.com",
-        // 100: "https://dai.poa.network",
-        // ...
-    },
-});
-
-const connectWC = async () => {
-    //  Enable session (triggers QR Code modal)
-
-    try {
-        await provider.enable();
-
-        web3 = new Web3(provider);
-
-        state.accounts = await web3.eth.getAccounts();
-        state.userAccount = state.accounts[0];
-    } catch (error) {
-        console.error(error);
-    }
+const init = () => {
+    getContract();
 };
-
+init();
 connectBtn.addEventListener("click", connectWallet);
 MMwallet.addEventListener("click", async () => {
     await getMMAccounts();

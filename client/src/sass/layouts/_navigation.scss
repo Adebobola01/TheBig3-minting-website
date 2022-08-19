@@ -6,7 +6,6 @@
     padding: 1rem;
     font-weight: 400;
     color: #db469f;
-    border-bottom: 4px solid #7891d5;
 }
 .nav__logo {
     font-size: 2rem;
@@ -20,9 +19,13 @@
 .nav__link {
     font-size: 1.5rem;
     text-decoration: none;
-    color: rgba(9, 147, 236, 0.5);
+    color: white;
 
     &:not(:last-child) {
         margin-right: 5rem;
+    }
+
+    &:hover {
+        color: gray;
     }
 }

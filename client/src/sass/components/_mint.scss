@@ -1,0 +1,64 @@
+.section-mint {
+    background-color: rgba(16, 29, 44, 0.9);
+    height: 50rem;
+    position: relative;
+}
+
+.form__container {
+    width: 30rem;
+    height: 25rem;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    padding: 2rem;
+    background-color: rgba(16, 29, 44, 0.9);
+    border-radius: 1rem;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.mint-form {
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.form__text {
+    position: relative;
+    margin: 0;
+    height: 30%;
+    font-size: 2rem;
+    text-align: center;
+    vertical-align: middle;
+    color: white;
+}
+
+.form-input {
+    outline: none;
+    width: 85%;
+    height: 3rem;
+    border-radius: 10px;
+    border: 1px solid #0993ec80;
+    background-color: black;
+    padding-left: 1rem;
+    font-size: 1rem;
+    color: white;
+
+    &:focus {
+        border: 1px solid #db469f;
+    }
+}
+
+.form__btn {
+    background: linear-gradient(to right, #db469f, #7891d5);
+    border: 0;
+    font-size: 1rem;
+    border-radius: 1.2rem;
+    padding: 1rem;
+    color: white;
+}

@@ -1,0 +1,56 @@
+.section-about {
+    margin: 0;
+    padding: 3rem;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-image: linear-gradient(
+            rgba(16, 29, 44, 0.9),
+            rgba(16, 29, 44, 0.9)
+        ),
+        url("../images/background-Image.jpg");
+    background-size: cover;
+    background-position: top;
+    position: relative;
+    font-family: "Courier New", Courier, monospace;
+    font-size: 1.2rem;
+
+    &__heading {
+        margin: 0 0 6rem;
+        font-size: 3rem;
+    }
+}
+
+.about__links {
+    margin-top: 2rem;
+    width: 70%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.about__link {
+    border: 1px solid rgba(255, 255, 255, 0.19);
+    border-radius: 24px;
+    padding: 2rem;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.6rem;
+    align-items: center;
+    text-decoration: none;
+    width: 45%;
+
+    &:hover {
+        background-color: rgba(0, 0, 0, 0.1);
+    }
+}
+
+.about__container {
+    border: 1px solid rgba(255, 255, 255, 0.19);
+    border-radius: 24px;
+    padding: 3rem;
+    width: 70%;
+    margin: 5rem 0 0 0;
+}

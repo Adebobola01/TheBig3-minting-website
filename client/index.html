@@ -11,7 +11,8 @@
             integrity="sha256-OfIB2zuUgSYcwWYMPC+YgPsJ70TB5f5dni/Z3rgYvRA="
             crossorigin="anonymous"
         ></script>
-        <script src="./src/app.js" defer></script>
+        <script src="./src/utils.js" defer></script>
+        <script src="./src/app.js" type="module" defer></script>
         <title>Big3Minting</title>
     </head>
     <body>
@@ -40,19 +41,19 @@
             </div>
         </div>
         <nav class="nav-bar">
-            <span class="nav__logo">NAV LOGO</span>
+            <img src="./src/images/logo.png" alt="logo" class="nav__logo" />
             <div class="nav__links">
                 <a
                     href="
-                #"
+                #about-section"
                     class="nav__link"
                     >About</a
                 >
                 <a
                     href="
-                #"
+                    #section-mint"
                     class="nav__link"
-                    >Team</a
+                    >Mint</a
                 >
                 <a
                     href="
@@ -66,7 +67,87 @@
             </div>
         </nav>
         <div class="main">
-            <section class="minting"></section>
+            <section class="section-about" id="about-section">
+                <div class="about__container">
+                    <h1 class="about__heading">Big3Minting</h1>
+                    <article class="about__text">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Aperiam, ipsum sapiente aspernatur libero repellat quis
+                        consequatur ducimus quam nisi exercitationem omnis earum
+                        qui. Aperiam, ipsum sapiente aspernatur libero repellat
+                        quis consequatur ducimus quam nisi exercitationem omnis
+                        earum qui.Lorem ipsum dolor sit amet consectetur
+                        adipisicing elit. Aperiam, ipsum sapiente aspernatur
+                        libero repellat quis consequatur ducimus quam nisi
+                        exercitationem omnis earum qui. Aperiam, ipsum sapiente
+                        aspernatur libero repellat quis consequatur ducimus quam
+                        nisi exercitationem omnis earum qui.Lorem ipsum dolor
+                        sit amet consectetur adipisicing elit. Aperiam, ipsum
+                        sapiente aspernatur libero repellat quis consequatur
+                        ducimus quam nisi exercitationem omnis earum qui.
+                        Aperiam, ipsum sapiente aspernatur libero repellat quis
+                        consequatur ducimus quam nisi exercitationem omnis earum
+                        qui.Lorem ipsum dolor sit amet consectetur adipisicing
+                        elit.
+                    </article>
+                </div>
+                <div class="about__links">
+                    <a href="#" class="about__link">
+                        <p>MarketPlace</p>
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                        >
+                            <line x1="7" y1="17" x2="17" y2="7"></line>
+                            <polyline points="7 7 17 7 17 17"></polyline>
+                        </svg>
+                    </a>
+                    <a
+                        href="https://github.com/Adebobola01/TheBig3-minting-website"
+                        class="about__link"
+                    >
+                        <p>GitHub</p>
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                        >
+                            <line x1="7" y1="17" x2="17" y2="7"></line>
+                            <polyline points="7 7 17 7 17 17"></polyline>
+                        </svg>
+                    </a>
+                </div>
+            </section>
+            <section class="section-mint" id="section-mint">
+                <div class="form__container">
+                    <form action="#" class="mint-form">
+                        <input
+                            type="text"
+                            placeholder="Enter The baseURI for your NFT"
+                            class="form-input"
+                        />
+                        <input
+                            type="text"
+                            placeholder="0.01 ETHERS"
+                            class="form-input"
+                        />
+                        <input type="button" value="MINT" class="form__btn" />
+                    </form>
+                </div>
+            </section>
         </div>
     </body>
 </html>

@@ -1,5 +1,5 @@
-const Migrations = artifacts.require("Migrations");
+const Big3Minting = artifacts.require("Big3NFT");
 
 module.exports = function (deployer) {
-  deployer.deploy(Migrations);
+    deployer.deploy(Big3Minting);
 };
