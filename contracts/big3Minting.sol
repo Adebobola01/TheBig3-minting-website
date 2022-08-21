@@ -42,6 +42,7 @@ contract Big3NFT is ERC721URIStorage, Ownable, ReentrancyGuard {
       _tokenIdCounter.increment();
       _safeMint(_to, _tokenIdCounter.current());
     }
+    _tokenIdCounter.reset();
   }
 
   // Set Mint Price
@@ -55,17 +56,7 @@ contract Big3NFT is ERC721URIStorage, Ownable, ReentrancyGuard {
   }
 
   //Mint multiple
-  function mint(string memory _tokenURI) public payable {
-    require(paused = false, "Minting is currently paused");
-    require(walletMints[msg.sender] + 1 <= maxPerWallet, "You have exceeded the max mints per wallet");
-    require(msg.value >= _price, "Not enough ethers sent");
-
-     _tokenIdCounter.increment();
-    _safeMint(msg.sender, _tokenIdCounter.current());
-    _setTokenURI(_tokenIdCounter.current(), _tokenURI);
-  }
-
-  function mintMultiple(string calldata _tokensBaseURI, uint256 _qty) public payable {
+  function mint(string calldata _tokensBaseURI, uint256 _qty) public payable {
     require(paused = false, "Minting is currently paused");
     require(walletMints[msg.sender] + _qty <= maxPerWallet, "You have exceeded the max mints per wallet");
     require(msg.value >= _qty * _price);
@@ -75,6 +66,7 @@ contract Big3NFT is ERC721URIStorage, Ownable, ReentrancyGuard {
       _tokenIdCounter.increment();
       _safeMint(msg.sender, _tokenIdCounter.current());
     }
+    _tokenIdCounter.reset();
   }
 
   function withdraw(address payable _to) public onlyOwner{

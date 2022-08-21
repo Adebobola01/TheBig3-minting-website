@@ -22,3 +22,8 @@ body {
 .main {
     height: 100%;
 }
+.disabled {
+    cursor: not-allowed;
+    background: grey;
+    color: black;
+}

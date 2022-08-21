@@ -14,6 +14,7 @@ const baseURI = document.querySelector(".baseURI-input");
 const addBtn = document.querySelector("#add-btn");
 const subBtn = document.querySelector("#sub-btn");
 const nftQty = document.querySelector(".nft-qty");
+const mintNFT = document.querySelector(".form__btn");
 
 const state = {};
 
@@ -82,16 +83,34 @@ const connectHandler = async () => {
     removeWalletContainer();
     displayAddr();
     confirmSignature();
+    await getContract();
 };
-const init = () => {
-    getContract();
+const init = async () => {
     nftQty.value = 0;
+    await (() => {
+        if (baseURI.value) {
+            mintNFT.classList.remove("disabled");
+        }
+    });
 };
+
 init();
 
+////////////////////////////////
+////////////////////////////////
+////eventListeners
 mintForm.addEventListener("submit", (e) => {
     e.preventDefault();
+});
+
+mintNFT.addEventListener("click", (e) => {
+    e.preventDefault();
+    if (!baseURI.value || parseInt(nftQty.value) === 0) {
+        console.log("Not allowed");
+        return;
+    }
     state.baseURI = baseURI.value;
+    console.log(state.baseURI);
     mintHandler();
 });
 connectBtn.addEventListener("click", connectWallet);
@@ -106,9 +125,27 @@ WCwallet.addEventListener("click", async () => {
 
 addBtn.addEventListener("click", () => {
     nftQty.value = parseInt(nftQty.value) + 1;
+    if (baseURI.value && nftQty.value > 0) {
+        mintNFT.classList.remove("disabled");
+    } else {
+        mintNFT.classList.add("disabled");
+    }
 });
 
 subBtn.addEventListener("click", () => {
     if (parseInt(nftQty.value) === 0) return;
     nftQty.value = parseInt(nftQty.value) - 1;
+    if (baseURI.value && nftQty.value > 0) {
+        mintNFT.classList.remove("disabled");
+    } else {
+        mintNFT.classList.add("disabled");
+    }
+});
+
+baseURI.addEventListener("keyup", (e) => {
+    if (e.target.value && nftQty.value > 0) {
+        mintNFT.classList.remove("disabled");
+    } else {
+        mintNFT.classList.add("disabled");
+    }
 });
