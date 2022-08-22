@@ -60,6 +60,16 @@ module.exports = {
             },
             network_id: 5777,
         },
+        infura_rinkeby: {
+            provider: function () {
+                return new HDWalletProvider(
+                    process.env.MNEMONIC,
+                    "https://rinkeby.infura.io/v3/3277f710e3cb4517b5f00f3c14192338",
+                    AccountIndex
+                );
+            },
+            network_id: 4,
+        },
         // Another network with more advanced options...
         // advanced: {
         // port: 8777,             // Custom port

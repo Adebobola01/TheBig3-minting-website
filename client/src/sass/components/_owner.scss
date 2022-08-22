@@ -1,0 +1,28 @@
+.owner__container {
+    border: 2px solid white;
+    height: 100%;
+    width: 20%;
+    position: absolute;
+    right: 0;
+    background-color: rgba(16, 29, 44, 0.9);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 5rem 1rem;
+
+    input {
+        margin-bottom: 1rem;
+    }
+}
+
+.owner-btn {
+    padding: 0.8rem;
+    font-size: 1.5rem;
+    color: white;
+    border-radius: 1rem;
+    background-color: red;
+    border: none;
+    &:hover {
+        background-color: rgb(59, 14, 14);
+    }
+}

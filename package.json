@@ -3,5 +3,9 @@
         "@openzeppelin/contracts": "^4.7.3",
         "@truffle/hdwallet-provider": "^2.0.12",
         "dotenv": "^16.0.1"
+    },
+    "devDependencies": {
+        "webpack": "^5.74.0",
+        "webpack-cli": "^4.10.0"
     }
 }

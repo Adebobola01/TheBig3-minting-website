@@ -1,8 +1,10 @@
 @import "layouts/navigation";
+@import "layouts/footer";
 
 @import "components/button";
 @import "components/wallets";
 @import "components/about";
-@import "components/_mint";
+@import "components/mint";
+@import "components/owner";
 
 @import "base/base";

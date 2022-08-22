@@ -29,6 +29,64 @@
   color: gray;
 }
 
+.footer {
+  background-color: rgb(31, 29, 29);
+  bottom: 0;
+  width: 100%;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding-left: 15rem;
+}
+.footer__container {
+  padding: 1rem;
+  display: grid;
+  grid-auto-rows: auto;
+  row-gap: 1.5rem;
+  width: 50rem;
+}
+.footer__nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.footer-nav__link {
+  font-size: 1.3rem;
+  text-decoration: none;
+  color: white;
+}
+.footer-nav__link:not(:last-child) {
+  margin-right: 5rem;
+}
+.footer-nav__link:hover {
+  color: gray;
+}
+.footer__socials {
+  display: flex;
+}
+
+.copyright {
+  font-family: "Nunito", sans-serif;
+  text-align: center;
+  margin: 0;
+}
+
+.profile {
+  text-decoration: none;
+  color: white;
+  font-size: 1.2rem;
+}
+
+.social__link {
+  width: 3rem;
+  text-decoration: none;
+}
+
+.social-img {
+  width: 100%;
+}
+
 .wallet__btn {
   background-color: rgba(0, 0, 0, 0.2);
   height: 4rem;
@@ -277,13 +335,42 @@
   outline: none;
 }
 
+.owner__container {
+  border: 2px solid white;
+  height: 100%;
+  width: 20%;
+  position: absolute;
+  right: 0;
+  background-color: rgba(16, 29, 44, 0.9);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 5rem 1rem;
+}
+.owner__container input {
+  margin-bottom: 1rem;
+}
+
+.owner-btn {
+  padding: 0.8rem;
+  font-size: 1.5rem;
+  color: white;
+  border-radius: 1rem;
+  background-color: red;
+  border: none;
+}
+.owner-btn:hover {
+  background-color: rgb(59, 14, 14);
+}
+
 * {
   box-sizing: border-box;
 }
 
+html,
 body {
   margin: 0;
-  height: 100vh;
+  padding: 0;
 }
 
 .hidden {
